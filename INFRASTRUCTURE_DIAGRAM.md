@@ -326,61 +326,6 @@ sequenceDiagram
     Batch->>VPCE: AWS Service Calls
 ```
 
-## 🚀 CI/CD Pipeline Architecture
-
-```mermaid
-graph LR
-    subgraph "GitHub Repository"
-        CODE[Application Code]
-        TF[Infrastructure Code]
-    end
-    
-    subgraph "GitHub Actions"
-        WORKFLOW[Deployment Workflow]
-        OIDC[OIDC Token]
-    end
-    
-    subgraph "AWS IAM"
-        CI_ROLE[CI/CD IAM Role]
-        CI_POLICY[Deployment Policy]
-    end
-    
-    subgraph "AWS Services"
-        ECS[ECS Service]
-        LAMBDA[Lambda Functions]
-        BATCH[AWS Batch]
-        S3[S3 Buckets]
-    end
-    
-    subgraph "Deployment Steps"
-        STEP1[Assume Role]
-        STEP2[Update ECS]
-        STEP3[Deploy Lambda]
-        STEP4[Update Batch]
-        STEP5[Upload Assets]
-        STEP6[Health Check]
-    end
-    
-    %% Flow
-    CODE --> WORKFLOW
-    TF --> WORKFLOW
-    WORKFLOW --> OIDC
-    OIDC --> CI_ROLE
-    CI_ROLE --> CI_POLICY
-    CI_ROLE --> STEP1
-    STEP1 --> STEP2
-    STEP2 --> STEP3
-    STEP3 --> STEP4
-    STEP4 --> STEP5
-    STEP5 --> STEP6
-    
-    %% Service updates
-    STEP2 --> ECS
-    STEP3 --> LAMBDA
-    STEP4 --> BATCH
-    STEP5 --> S3
-```
-
 ## 📊 Monitoring & Alerting Architecture
 
 ```mermaid
