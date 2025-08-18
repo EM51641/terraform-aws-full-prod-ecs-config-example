@@ -353,12 +353,12 @@ graph LR
     end
     
     subgraph "Deployment Steps"
-        STEP1[1. Assume Role]
-        STEP2[2. Update ECS]
-        STEP3[3. Deploy Lambda]
-        STEP4[4. Update Batch]
-        STEP5[5. Upload Assets]
-        STEP6[6. Health Check]
+        STEP1[Assume Role]
+        STEP2[Update ECS]
+        STEP3[Deploy Lambda]
+        STEP4[Update Batch]
+        STEP5[Upload Assets]
+        STEP6[Health Check]
     end
     
     %% Flow
