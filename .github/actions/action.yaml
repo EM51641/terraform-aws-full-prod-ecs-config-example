@@ -1,0 +1,16 @@
+name: Set up project
+
+inputs:
+  terraform_version:
+    required: false
+    type: string
+    default: "1.5.0"
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: ${{ inputs.terraform_version }}

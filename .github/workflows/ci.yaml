@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+  workflow_call:
+
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Project
+        uses: ./.github/actions
+        with:
+          terraform_version: "1.5.0"
+
+      - name: Terraform Format Check
+        run: |
+          terraform fmt -check -recursive
+
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [src/environments/production, src/backend, src/ecr_backend]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Project
+        uses: ./.github/actions
+        with:
+          terraform_version: "1.5.0"
+
+      - name: Validate ${{ matrix.environment }}
+        working-directory: ${{ matrix.environment }}
+        run: |
+          terraform init -backend=false
+          terraform validate
