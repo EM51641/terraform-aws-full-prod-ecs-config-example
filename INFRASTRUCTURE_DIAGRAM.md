@@ -8,7 +8,6 @@ This document contains Mermaid diagrams that visualize the complete AWS infrastr
 graph TB
     subgraph "Internet"
         Users[🌐 Users]
-        CDN[🌍 CDN Users]
     end
     
     subgraph "AWS Cloud"
@@ -19,6 +18,7 @@ graph TB
         
         subgraph "Public Layer"
             ALB[Application Load Balancer<br/>HTTPS:443, HTTP:80]
+            ALB_SG[ALB Security Group]
             IGW[Internet Gateway]
             NAT[NAT Gateway<br/>Elastic IP]
         end
