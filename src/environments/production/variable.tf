@@ -35,5 +35,5 @@ variable "github_branch" {
 
 variable "account_id" {
   description = "AWS account ID"
-  default     = "010526276787"
+  default     = "XXXXXX"
 }
