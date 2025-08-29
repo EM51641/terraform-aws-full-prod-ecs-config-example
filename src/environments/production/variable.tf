@@ -10,7 +10,7 @@ variable "cidr_block" {
 
 variable "project_name" {
   description = "Project name"
-  default     = "livedisplaced"
+  default     = "project"
 }
 
 variable "env_name" {
@@ -25,7 +25,7 @@ variable "github_org" {
 
 variable "github_repo" {
   description = "GitHub repository"
-  default     = "livedisplaced"
+  default     = "NAME"
 }
 
 variable "github_branch" {
